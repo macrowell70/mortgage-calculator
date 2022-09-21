@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+.button-container {
+  width: 275px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  height: auto;
+  width: 125px;
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  background: #41BDE4;
+  color: white;
+}
+
+.reset {
+  background: #E44141;
+}
+
