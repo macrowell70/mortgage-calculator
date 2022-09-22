@@ -7,4 +7,5 @@
 }
 .dynamic-fields-container{
     display: flex;
+    align-items: center;
 }

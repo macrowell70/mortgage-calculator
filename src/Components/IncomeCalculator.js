@@ -87,7 +87,9 @@ export default function IncomeCalculator(props) {
                     <div 
                         className='calculated-income'>
                         {`Your calculated monthly income: $${formValues.calculatedInc}`}
-                        <button>Next Page</button>
+                        <a href='/expenses'>
+                           <button>Next Page</button> 
+                        </a>
                     </div>
                 )}
             </div>

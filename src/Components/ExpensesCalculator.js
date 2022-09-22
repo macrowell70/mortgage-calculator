@@ -95,7 +95,7 @@ export default function ExpensesCalculator(props) {
                             >
                             </input>
                         ))}
-                        <button type='button' onClick={addCreditCard}>Add Credit Card</button>    
+                        <button type='button' className='add-button' onClick={addCreditCard}>+</button>    
                     </div>
                     <div id='other-container' className='dynamic-fields-container'>
                         {formValues.other.map((oth, i) => (
@@ -109,7 +109,7 @@ export default function ExpensesCalculator(props) {
                             >
                             </input>
                         ))}
-                        <button type='button' onClick={addOther}>Add Other Account</button>    
+                        <button type='button' className='add-button' onClick={addOther}>+</button>    
                     </div>
                     
                 </form>
