@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ExpensesCalculator.css';
 
 const initialFormValues = {
     mortgage: '',
@@ -34,7 +35,7 @@ export default function ExpensesCalculator(props) {
         setFormValues({...formValues, creditCards: formValues.creditCards.map(cc => {
             if (cc.name === name) return { name: name, value: value }
             else return cc
-        })})
+        })});
     };
 
     const handleChangeOther = evt => {
@@ -63,12 +64,12 @@ export default function ExpensesCalculator(props) {
     }, [formValues])
     
     return (
-        <div className='Expenses-Calculator'>
-            <header className='Expenses-Header'>
+        <div id='Expenses-Calculator'>
+            <header id='Expenses-Header'>
                 <h2>Next, Let's Find Out What Your Monthly Expenses Are</h2>
             </header>
             <div className='form-container'>
-                <form>
+                <form id='expenses-form' className='form'>
                     {fields.map((field, i) => (
                         <input
                             key={i}
@@ -80,30 +81,35 @@ export default function ExpensesCalculator(props) {
                         >
                         </input>
                     ))}
-                    {formValues.creditCards.map((cc, i) => (
-                        <input
-                            key={i}
-                            value={cc.value}
-                            type='number'
-                            placeholder='minimum monthly payment'
-                            name={cc.name}
-                            onChange={handleChangeCC}
-                        >
-                        </input>
-                    ))}
-                    <button type='button' onClick={addCreditCard}>Add Credit Card</button>
-                    {formValues.other.map((oth, i) => (
-                        <input
-                            key={i}
-                            value={oth.value}
-                            type='number'
-                            placeholder='Monthly Payment'
-                            name={oth.name}
-                            onChange={handleChangeOther}
-                        >
-                        </input>
-                    ))}
-                    <button type='button' onClick={addOther}>Add Other Account</button>
+                    <div id='credit-cards-container' className='dynamic-fields-container'>
+                        {formValues.creditCards.map((cc, i) => (
+                            <input
+                                key={i}
+                                value={cc.value}
+                                type='number'
+                                placeholder='minimum monthly payment'
+                                name={cc.name}
+                                onChange={handleChangeCC}
+                            >
+                            </input>
+                        ))}
+                        <button type='button' onClick={addCreditCard}>Add Credit Card</button>    
+                    </div>
+                    <div id='other-container' className='dynamic-fields-container'>
+                        {formValues.other.map((oth, i) => (
+                            <input
+                                key={i}
+                                value={oth.value}
+                                type='number'
+                                placeholder='Monthly Payment'
+                                name={oth.name}
+                                onChange={handleChangeOther}
+                            >
+                            </input>
+                        ))}
+                        <button type='button' onClick={addOther}>Add Other Account</button>    
+                    </div>
+                    
                 </form>
             </div>
         </div>

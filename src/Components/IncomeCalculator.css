@@ -12,14 +12,8 @@ h2 {
     flex-direction: column;
     align-items: center;
 }
-.Income-form {
+#income-form {
     height: 200px;
-    max-height: 80vh;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
 }
 .calculated-income {
     margin-top: 5%;

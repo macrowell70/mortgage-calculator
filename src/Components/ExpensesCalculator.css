@@ -1,0 +1,6 @@
+#expenses-form{
+    height: 100vh;
+}
+.dynamic-fields-container{
+    display: flex;
+}

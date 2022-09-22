@@ -57,7 +57,7 @@ export default function IncomeCalculator(props) {
                 <h2>First Calculate Your Income</h2>
             </header>
             <div className='form-container'>
-                <form className='Income-form' onSubmit={handleSubmit}>
+                <form id='income-form' className='form' onSubmit={handleSubmit}>
                     <label>How much do you make?<br></br>
                         <input
                             value={formValues.paycheck}
