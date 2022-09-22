@@ -1,5 +1,9 @@
 #expenses-form{
-    height: 100vh;
+    height: 400px;
+}
+.static-fields-contatiner{
+    display: flex;
+    flex-wrap: wrap;
 }
 .dynamic-fields-container{
     display: flex;

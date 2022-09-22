@@ -70,17 +70,19 @@ export default function ExpensesCalculator(props) {
             </header>
             <div className='form-container'>
                 <form id='expenses-form' className='form'>
-                    {fields.map((field, i) => (
-                        <input
-                            key={i}
-                            value={formValues[field]}
-                            type='number'
-                            placeholder={`monthly ${field} payment`}
-                            name={field}
-                            onChange={handleChange}
-                        >
-                        </input>
-                    ))}
+                    <div id='expenses-fields-container' className='static-fields-container'>
+                        {fields.map((field, i) => (
+                            <input
+                                key={i}
+                                value={formValues[field]}
+                                type='number'
+                                placeholder={`monthly ${field} payment`}
+                                name={field}
+                                onChange={handleChange}
+                            >
+                            </input>
+                        ))}    
+                    </div>
                     <div id='credit-cards-container' className='dynamic-fields-container'>
                         {formValues.creditCards.map((cc, i) => (
                             <input
