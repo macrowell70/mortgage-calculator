@@ -22,7 +22,6 @@ function App() {
 
   const updateFigures = (figure, value) => {
     setFinalFigures({...finalFigures, [figure]: value});
-    console.log(finalFigures)
   };
 
   const handleNavigate = page => {

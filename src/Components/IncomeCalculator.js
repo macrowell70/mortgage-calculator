@@ -10,8 +10,9 @@ export default function IncomeCalculator(props) {
     const { updateFigures, handleNavigate } = props;
     const [paycheckIsEntered, setPaycheckIsEntered] = useState(false);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [income, setIncome] = useState(0)
 
-    const pickMultiple = (frequency) => {
+    const pickMultiple = frequency => {
         let multiple = 0;
         switch (frequency) {
             case 'monthly':
@@ -36,9 +37,8 @@ export default function IncomeCalculator(props) {
     const handleSubmit = evt => {
         evt.preventDefault();
         const {paycheck, frequency} = formValues;
-        const calculatedInc = 
-            Math.round(paycheck * pickMultiple(frequency)/12 * 100)/100;
-        updateFigures('income', calculatedInc);
+        setIncome(Math.round(paycheck * pickMultiple(frequency)/12 * 100)/100);
+        updateFigures('income', income);
         setFormValues(initialFormValues);
         setPaycheckIsEntered(true);
     };
@@ -83,7 +83,7 @@ export default function IncomeCalculator(props) {
                 {paycheckIsEntered && (
                     <div 
                         className='calculated-income'>
-                        {`Your calculated monthly income: $`}
+                        {`Your calculated monthly income: $${income}`}
                         <button onClick={() => handleNavigate('/expenses')}>Next Page</button> 
                     </div>
                 )}
