@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './IncomeCalculator.css';
 
 const initialFormValues = {
@@ -10,6 +11,7 @@ const initialFormValues = {
 export default function IncomeCalculator(props) {
     const [paycheckIsEntered, setPaycheckIsEntered] = useState(false);
     const [formValues, setFormValues] = useState(initialFormValues);
+    const navigate = useNavigate();
 
     const pickMultiple = (frequency) => {
         let multiple = 0;
@@ -48,8 +50,12 @@ export default function IncomeCalculator(props) {
 
     const handleReset = () => {
         setFormValues(initialFormValues);
-        setPaycheckIsEntered(false)
-      }
+        setPaycheckIsEntered(false);
+      };
+
+    const navigateToNext = () => {
+        navigate('/expenses');
+    };
 
     return (
         <div className='Income-calculator'>
@@ -87,9 +93,7 @@ export default function IncomeCalculator(props) {
                     <div 
                         className='calculated-income'>
                         {`Your calculated monthly income: $${formValues.calculatedInc}`}
-                        <a href='/expenses'>
-                           <button>Next Page</button> 
-                        </a>
+                        <button onClick={navigateToNext}>Next Page</button> 
                     </div>
                 )}
             </div>

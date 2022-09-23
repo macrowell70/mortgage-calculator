@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 export const handleChange = evt => {
@@ -8,13 +9,17 @@ export const handleChange = evt => {
 };
 
 function App() {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate('/income');
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Welcome! Let's get started</h1>
-        <a href='/income'>
-          <button>Click To Begin</button>
-        </a>
+        <button onClick={handleClick}>Click To Begin</button>
       </header>
     </div>
   );
