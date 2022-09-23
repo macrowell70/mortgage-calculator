@@ -1,26 +1,52 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
+import Home from './Components/Home';
+import IncomeCalculator from './Components/IncomeCalculator';
+import ExpensesCalculator from './Components/ExpensesCalculator';
 
-export const handleChange = evt => {
+const handleChange = evt => {
   const {name, value} = evt.target
   evt.preventDefault();
   return(values => ({...values, [name]: value}));
 };
 
-function App() {
-  const navigate = useNavigate()
+const initialFigures = {
+  income: '',
+  expenses: ''
+};
 
-  const handleClick = () => {
-    navigate('/income');
+function App() {
+  const [finalFigures, setFinalFigures] = useState(initialFigures);
+  const updateFigures = (figure, value) => {
+    setFinalFigures({...finalFigures, [figure]: value});
+    console.log(finalFigures)
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Welcome! Let's get started</h1>
-        <button onClick={handleClick}>Click To Begin</button>
-      </header>
+      <React.StrictMode>
+        <nav className='main-nav'>
+          <Link to='/'>Home</Link>
+          <Link to='/income'>Income</Link>
+          <Link to='/expenses'>Expenses</Link>
+        </nav>
+        <Routes>
+          <Route exact path='/' element={<Home />} />
+          <Route 
+            path='/income' 
+            element={<IncomeCalculator 
+            handleChange={handleChange}
+            updateFigures={updateFigures} />} 
+          />
+          <Route 
+            path='/expenses' 
+            element={<ExpensesCalculator
+            handleChange={handleChange}
+            updateFigures={updateFigures} />} 
+          />
+        </Routes>
+      </React.StrictMode>
     </div>
   );
 }

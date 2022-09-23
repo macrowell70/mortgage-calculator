@@ -4,11 +4,11 @@ import './IncomeCalculator.css';
 
 const initialFormValues = {
     paycheck: '',
-    frequency: '',
-    calculatedInc: ''
+    frequency: ''
 };
 
 export default function IncomeCalculator(props) {
+    const { updateFigures, finalFigures } = props;
     const [paycheckIsEntered, setPaycheckIsEntered] = useState(false);
     const [formValues, setFormValues] = useState(initialFormValues);
     const navigate = useNavigate();
@@ -36,15 +36,12 @@ export default function IncomeCalculator(props) {
     }
 
     const handleSubmit = evt => {
-        const {paycheck, frequency} = formValues
         evt.preventDefault();
+        const {paycheck, frequency} = formValues;
         const calculatedInc = 
             Math.round(paycheck * pickMultiple(frequency)/12 * 100)/100;
-        setFormValues(({
-            ['paycheck']: '',
-            ['frequency']: '',
-            ['calculatedInc']: calculatedInc
-        }));
+        setFormValues(initialFormValues);
+        updateFigures('income', calculatedInc);
         setPaycheckIsEntered(true);
     };
 
@@ -92,7 +89,7 @@ export default function IncomeCalculator(props) {
                 {paycheckIsEntered && (
                     <div 
                         className='calculated-income'>
-                        {`Your calculated monthly income: $${formValues.calculatedInc}`}
+                        {`Your calculated monthly income: $${finalFigures.income}`}
                         <button onClick={navigateToNext}>Next Page</button> 
                     </div>
                 )}
