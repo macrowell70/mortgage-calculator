@@ -12,15 +12,21 @@ const handleChange = evt => {
 };
 
 const initialFigures = {
-  income: '',
-  expenses: ''
+  income: 0,
+  expenses: 0
 };
 
 function App() {
   const [finalFigures, setFinalFigures] = useState(initialFigures);
+  const navigate = useNavigate();
+
   const updateFigures = (figure, value) => {
     setFinalFigures({...finalFigures, [figure]: value});
     console.log(finalFigures)
+  };
+
+  const handleNavigate = page => {
+    navigate(page)
   };
 
   return (
@@ -32,10 +38,15 @@ function App() {
           <Link to='/expenses'>Expenses</Link>
         </nav>
         <Routes>
-          <Route exact path='/' element={<Home />} />
+          <Route 
+            exact path='/' 
+            element={<Home 
+            handleNavigate={handleNavigate} />} 
+          />
           <Route 
             path='/income' 
-            element={<IncomeCalculator 
+            element={<IncomeCalculator
+            handleNavigate={handleNavigate} 
             handleChange={handleChange}
             updateFigures={updateFigures} />} 
           />
