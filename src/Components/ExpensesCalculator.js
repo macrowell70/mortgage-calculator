@@ -59,9 +59,13 @@ export default function ExpensesCalculator(props) {
         setFormValues({...formValues, other: formValues.other.concat(newOther)})
     }
 
-    useEffect(() => {
-        console.log(formValues)
-    }, [formValues])
+    const handleSubmit = evt => {
+        evt.preventDefault()
+    }
+
+    const handleReset = () => {
+        setFormValues(initialFormValues)
+    }
     
     return (
         <div id='Expenses-Calculator'>
@@ -69,7 +73,7 @@ export default function ExpensesCalculator(props) {
                 <h2>Next, Let's Find Out What Your Monthly Expenses Are</h2>
             </header>
             <div className='form-container'>
-                <form id='expenses-form' className='form'>
+                <form id='expenses-form' className='form' onSubmit={handleSubmit}>
                     <div id='expenses-fields-container' className='static-fields-container'>
                         {fields.map((field, i) => (
                             <input
@@ -111,7 +115,11 @@ export default function ExpensesCalculator(props) {
                         ))}
                         <button type='button' className='add-button' onClick={addOther}>+</button>    
                     </div>
-                    
+                    <div className='button-container'>
+                        <button className='submit' type='submit'>Add Expenses</button>
+                        <button className='reset' type='reset' onClick={handleReset}>Reset</button>    
+                    </div> 
+                        
                 </form>
             </div>
         </div>

@@ -4,6 +4,7 @@
 .static-fields-contatiner{
     display: flex;
     flex-wrap: wrap;
+    width: 50%;
 }
 .dynamic-fields-container{
     display: flex;
