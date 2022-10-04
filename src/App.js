@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Components/Home';
 import IncomeCalculator from './Components/IncomeCalculator';
 import ExpensesCalculator from './Components/ExpensesCalculator';
+import MortgageCalculator from './Components/MortgageCalculator';
 
 const handleChange = evt => {
   const {name, value} = evt.target
@@ -35,6 +36,7 @@ function App() {
           <Link to='/'>Home</Link>
           <Link to='/income'>Income</Link>
           <Link to='/expenses'>Expenses</Link>
+          <Link to='/mortgage'>Mortgage</Link>
         </nav>
         <Routes>
           <Route 
@@ -54,6 +56,11 @@ function App() {
             element={<ExpensesCalculator
             handleChange={handleChange}
             updateFigures={updateFigures} />} 
+          />
+          <Route 
+            path='/mortgage'
+            element={<MortgageCalculator
+            finalFigures={finalFigures} />}
           />
         </Routes>
       </React.StrictMode>

@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function MortgageCalculator() {
+function MortgageCalculator(props) {
+    const { finalFigures } = props;
 
     return (
-        <div>Placeholder</div>
+        <div>
+            <div>
+               {`${finalFigures.income}`} 
+            </div>
+            <div>
+                {`${finalFigures.expenses}`}
+            </div>
+        </div>
     );
 };
 
