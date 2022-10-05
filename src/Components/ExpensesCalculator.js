@@ -17,7 +17,9 @@ const initialFormValues = {
 };
 
 export default function ExpensesCalculator(props) {
+    const { updateFigures, finalFigures } = props
     const [formValues, setFormValues] = useState(initialFormValues);
+    const [expenses, setExpenses] = useState();
 
     const fields = [
         'mortgage',
@@ -25,6 +27,23 @@ export default function ExpensesCalculator(props) {
         'taxes',
         'insurance'
     ];
+
+    useEffect(() => {
+        let totalExpenses = 0
+        for (const field of fields) {
+            if (formValues[field]) 
+                totalExpenses += parseInt(formValues[field]);
+        };
+        for (const cc of formValues.creditCards) {
+            if (cc.value)
+                totalExpenses += parseInt(cc.value)
+        };
+        for (const oth of formValues.other) {
+            if (oth.value)
+                totalExpenses += parseInt(oth.value);
+        };
+        setExpenses(totalExpenses);
+    }, [formValues]);
 
     const handleChange = evt => {
         setFormValues(props.handleChange(evt));
@@ -61,10 +80,12 @@ export default function ExpensesCalculator(props) {
 
     const handleSubmit = evt => {
         evt.preventDefault()
+        updateFigures('expenses', expenses)
     }
 
     const handleReset = () => {
         setFormValues(initialFormValues)
+        updateFigures('expenses', 0)
     }
     
     return (

@@ -59,6 +59,7 @@ function App() {
           <Route 
             path='/expenses' 
             element={<ExpensesCalculator
+            finalFigures={finalFigures}
             handleChange={handleChange}
             updateFigures={updateFigures} />} 
           />

@@ -50,6 +50,7 @@ export default function IncomeCalculator(props) {
     const handleReset = () => {
         setFormValues(initialFormValues);
         setPaycheckIsEntered(false);
+        updateFigures('income', 0)
       };
 
     return (
