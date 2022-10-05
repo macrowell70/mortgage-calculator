@@ -14,7 +14,8 @@ const handleChange = evt => {
 
 const initialFigures = {
   income: 0,
-  expenses: 0
+  expenses: 0,
+  dti: 0
 };
 
 function App() {
@@ -28,6 +29,11 @@ function App() {
   const handleNavigate = page => {
     navigate(page)
   };
+
+  useEffect(() => {
+    const newDti = Math.round((finalFigures.expenses/finalFigures.income)*100) || 0;
+    setFinalFigures({...finalFigures, dti: newDti});
+  }, [finalFigures.income, finalFigures.expenses]);
 
   useEffect(() => {
     console.log(finalFigures)
