@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './IncomeCalculator.css';
 
 const initialFormValues = {
@@ -7,7 +7,7 @@ const initialFormValues = {
 };
 
 export default function IncomeCalculator(props) {
-    const { updateFigures, handleNavigate } = props;
+    const { updateFigures, handleNavigate, finalFigures } = props;
     const [paycheckIsEntered, setPaycheckIsEntered] = useState(false);
     const [formValues, setFormValues] = useState(initialFormValues);
     const [income, setIncome] = useState(0)
@@ -32,12 +32,16 @@ export default function IncomeCalculator(props) {
 
     const handleChange = evt => {
         setFormValues(props.handleChange(evt))
-    }
+        setPaycheckIsEntered(false)
+    };
+
+    useEffect(() => {
+        const { paycheck, frequency } = formValues;
+        setIncome(Math.round(paycheck * pickMultiple(frequency)/12 * 100)/100)
+    }, [formValues]);
 
     const handleSubmit = evt => {
         evt.preventDefault();
-        const {paycheck, frequency} = formValues;
-        setIncome(Math.round(paycheck * pickMultiple(frequency)/12 * 100)/100);
         updateFigures('income', income);
         setFormValues(initialFormValues);
         setPaycheckIsEntered(true);
@@ -83,7 +87,7 @@ export default function IncomeCalculator(props) {
                 {paycheckIsEntered && (
                     <div 
                         className='calculated-income'>
-                        {`Your calculated monthly income: $${income}`}
+                        {`Your calculated monthly income: $${finalFigures.income}`}
                         <button onClick={() => handleNavigate('/expenses')}>Next Page</button> 
                     </div>
                 )}

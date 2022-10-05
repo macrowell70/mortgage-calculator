@@ -51,6 +51,7 @@ function App() {
           <Route 
             path='/income' 
             element={<IncomeCalculator
+            finalFigures={finalFigures}
             handleNavigate={handleNavigate} 
             handleChange={handleChange}
             updateFigures={updateFigures} />} 
