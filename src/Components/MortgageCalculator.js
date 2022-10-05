@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function MortgageCalculator(props) {
-    const { finalFigures } = props;
+    const { income, expenses } = props.finalFigures;
 
     return (
         <div>
             <div>
-               {`${finalFigures.income}`} 
+               {`${income}`} 
             </div>
             <div>
-                {`${finalFigures.expenses}`}
+                {`${expenses}`}
             </div>
         </div>
     );

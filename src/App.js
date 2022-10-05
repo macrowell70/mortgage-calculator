@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Route, Link, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
@@ -28,6 +28,10 @@ function App() {
   const handleNavigate = page => {
     navigate(page)
   };
+
+  useEffect(() => {
+    console.log(finalFigures)
+  }, [finalFigures])
 
   return (
     <div className="App">
