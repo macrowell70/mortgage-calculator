@@ -15,7 +15,8 @@ const handleChange = evt => {
 const initialFigures = {
   income: 0,
   expenses: 0,
-  dti: 0
+  dti: 0,
+  maxPayment: 0
 };
 
 function App() {
@@ -31,9 +32,17 @@ function App() {
   };
 
   useEffect(() => {
-    const newDti = Math.round((finalFigures.expenses/finalFigures.income)*100) || 0;
-    setFinalFigures({...finalFigures, dti: newDti});
+    const { income, expenses } = finalFigures
+    const dti = Math.round((expenses/income)*100) || 0;
+    setFinalFigures({...finalFigures, dti: dti});
   }, [finalFigures.income, finalFigures.expenses]);
+
+  useEffect(() => {
+    const { income, dti } = finalFigures;
+    const diffDti = 42 - dti;
+    const maxPayment = Math.round(income * diffDti)/100;
+    setFinalFigures({...finalFigures, maxPayment: maxPayment });
+  }, [finalFigures.dti]);
 
   useEffect(() => {
     console.log(finalFigures)

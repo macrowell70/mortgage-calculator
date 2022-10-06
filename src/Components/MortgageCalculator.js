@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function MortgageCalculator(props) {
-    const { income, expenses, dti } = props.finalFigures;
+    const { income, expenses, dti, maxPayment } = props.finalFigures;
 
     return (
         <div>
@@ -13,6 +13,9 @@ function MortgageCalculator(props) {
             </div>
             <div>
                 {`${dti}%`}
+            </div>
+            <div>
+                {`${maxPayment}`}
             </div>
         </div>
     );
