@@ -16,7 +16,8 @@ const initialFigures = {
   income: 0,
   expenses: 0,
   dti: 0,
-  maxPayment: 0
+  maxPayment: 0,
+  maxMortgage: 0
 };
 
 function App() {
@@ -45,8 +46,14 @@ function App() {
   }, [finalFigures.dti]);
 
   useEffect(() => {
-    console.log(finalFigures)
-  }, [finalFigures])
+    const { maxPayment } = finalFigures;
+    const r = .05/12;
+    const n = 360;
+    const exp = Math.pow((1 + r), n);
+    const denom = (r * exp)/(exp - 1);
+    const maxMortgage = Math.round((maxPayment/denom)*100)/100;
+    setFinalFigures({...finalFigures, maxMortgage: maxMortgage})
+  }, [finalFigures.maxPayment]);
 
   return (
     <div className="App">
