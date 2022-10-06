@@ -75,18 +75,19 @@ export default function ExpensesCalculator(props) {
     const addOther = () => {
         const number = formValues.other.length + 1;
         const newOther = {name: `oth${number}`, value: ''};
-        setFormValues({...formValues, other: formValues.other.concat(newOther)})
-    }
+        setFormValues({...formValues, other: formValues.other.concat(newOther)});
+    };
 
     const handleSubmit = evt => {
         evt.preventDefault()
         updateFigures('expenses', expenses)
-    }
+        setFormValues(initialFormValues);
+    };
 
     const handleReset = () => {
-        setFormValues(initialFormValues)
-        updateFigures('expenses', 0)
-    }
+        setFormValues(initialFormValues);
+        updateFigures('expenses', 0);
+    };
     
     return (
         <div id='Expenses-Calculator'>
