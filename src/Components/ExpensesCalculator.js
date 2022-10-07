@@ -7,11 +7,11 @@ const initialFormValues = {
     taxes: '',
     insurance: '',
     creditCards: [{
-        name: 'CC1',
+        name: 'creditCards1',
         value: ''
     }],
     other: [{
-        name: 'oth1',
+        name: 'other1',
         value: ''
     }]
 };
@@ -69,31 +69,17 @@ export default function ExpensesCalculator(props) {
         setExpensesAreEntered(false)
     };
 
-
-    const addCreditCard = () => {
-        const number = formValues.creditCards.length + 1;
-        const newCC = {name: `CC${number}`, value: ''};
-        setFormValues({...formValues, creditCards: formValues.creditCards.concat(newCC)});
+    const addField = field => {
+        const number = formValues[field].length + 1;
+        const newField = {name: field + `${number}`, value: ''};
+        setFormValues({...formValues, [field]: formValues[field].concat(newField)});
     };
 
-    const delCreditCard = () => {
-        const last = formValues.creditCards.length;
-        setFormValues({...formValues, creditCards: formValues.creditCards.filter(cc => {
-            return cc.name !== `CC${last}`
+    const delField = field => {
+        const last = formValues[field].length;
+        setFormValues({...formValues, [field]: formValues[field].filter(indField => {
+            return indField.name !== `${field}${last}`
         })});
-    };
-
-    const addOther = () => {
-        const number = formValues.other.length + 1;
-        const newOther = {name: `oth${number}`, value: ''};
-        setFormValues({...formValues, other: formValues.other.concat(newOther)});
-    };
-
-    const delOther = () => {
-        const last = formValues.other.length;
-        setFormValues({...formValues, other: formValues.other.filter(oth => {
-            return oth.name !== `oth${last}`
-        })})
     };
 
     const handleSubmit = evt => {
@@ -141,9 +127,9 @@ export default function ExpensesCalculator(props) {
                             >
                             </input>
                         ))}
-                        <button type='button' className='add-button' onClick={addCreditCard}>+</button>
+                        <button type='button' className='add-button' onClick={() => addField('creditCards')}>+</button>
                         {formValues.creditCards.length > 1 && 
-                            <button type='button' className='del-button' onClick={delCreditCard}>-</button>}    
+                            <button type='button' className='del-button' onClick={() => delField('creditCards')}>-</button>}    
                     </div>
                     <div id='other-container' className='dynamic-fields-container'>
                         {formValues.other.map((oth, i) => (
@@ -157,9 +143,9 @@ export default function ExpensesCalculator(props) {
                             >
                             </input>
                         ))}
-                        <button type='button' className='add-button' onClick={addOther}>+</button>
+                        <button type='button' className='add-button' onClick={() => addField('other')}>+</button>
                         {formValues.other.length > 1 &&
-                            <button type='button' className='del-button' onClick={delOther}>-</button>}    
+                            <button type='button' className='del-button' onClick={() => delField('other')}>-</button>}    
                     </div>
                     <div className='button-container'>
                         <button className='submit' type='submit'>Add Expenses</button>
