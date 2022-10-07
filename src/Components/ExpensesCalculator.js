@@ -76,10 +76,24 @@ export default function ExpensesCalculator(props) {
         setFormValues({...formValues, creditCards: formValues.creditCards.concat(newCC)});
     };
 
+    const delCreditCard = () => {
+        const last = formValues.creditCards.length;
+        setFormValues({...formValues, creditCards: formValues.creditCards.filter(cc => {
+            return cc.name !== `CC${last}`
+        })});
+    };
+
     const addOther = () => {
         const number = formValues.other.length + 1;
         const newOther = {name: `oth${number}`, value: ''};
         setFormValues({...formValues, other: formValues.other.concat(newOther)});
+    };
+
+    const delOther = () => {
+        const last = formValues.other.length;
+        setFormValues({...formValues, other: formValues.other.filter(oth => {
+            return oth.name !== `oth${last}`
+        })})
     };
 
     const handleSubmit = evt => {
@@ -127,7 +141,9 @@ export default function ExpensesCalculator(props) {
                             >
                             </input>
                         ))}
-                        <button type='button' className='add-button' onClick={addCreditCard}>+</button>    
+                        <button type='button' className='add-button' onClick={addCreditCard}>+</button>
+                        {formValues.creditCards.length > 1 && 
+                            <button type='button' className='del-button' onClick={delCreditCard}>-</button>}    
                     </div>
                     <div id='other-container' className='dynamic-fields-container'>
                         {formValues.other.map((oth, i) => (
@@ -141,7 +157,9 @@ export default function ExpensesCalculator(props) {
                             >
                             </input>
                         ))}
-                        <button type='button' className='add-button' onClick={addOther}>+</button>    
+                        <button type='button' className='add-button' onClick={addOther}>+</button>
+                        {formValues.other.length > 1 &&
+                            <button type='button' className='del-button' onClick={delOther}>-</button>}    
                     </div>
                     <div className='button-container'>
                         <button className='submit' type='submit'>Add Expenses</button>

@@ -22,8 +22,8 @@ function MortgageCalculator(props) {
 
     return (
         <div>
-            {fields.map((field, i) => (
-                <div id={`mortgage-${field.figure}`} className='mortgage-field' key={i} >
+            {fields.map(field => (
+                <div id={`mortgage-${field.figure}`} className='mortgage-field' key={field.figure} >
                     {`${field.lable}`}
                 </div>
             ))}
