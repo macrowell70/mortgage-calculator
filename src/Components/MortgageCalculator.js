@@ -4,27 +4,27 @@ function MortgageCalculator(props) {
     const { income, expenses, dti, maxPayment, maxMortgage } = props.finalFigures;
 
     const fields = [{
-        figure: income,
-        lable: 'Monthly income'
+        figure: 'income',
+        lable: `Monthly income $${income}`
     }, {
-        figure: expenses,
-        lable: 'Monthly expenses'
+        figure: 'expenses',
+        lable: `Monthly expenses $${expenses}`
     }, {
-        figure: dti,
-        lable: 'Debt-to-income ratio'
+        figure: 'dti',
+        lable: `Debt-to-income ratio ${dti}%`
     }, {
-        figure: maxPayment,
-        lable: 'Maximum monthly payment'
+        figure: 'payment',
+        lable: `Maximum monthly payment $${maxPayment}`
     }, {
-        figure: maxMortgage,
-        lable: 'Maximum mortgage principle'
+        figure: 'principle',
+        lable: `Maximum mortgage principle $${maxMortgage}`
     }];
 
     return (
         <div>
             {fields.map((field, i) => (
-                <div className='mortgage-field' key={i} >
-                    {`${field['lable']} ${field['figure']}`}
+                <div id={`mortgage-${field.figure}`} className='mortgage-field' key={i} >
+                    {`${field.lable}`}
                 </div>
             ))}
         </div>
