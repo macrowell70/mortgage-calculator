@@ -5,20 +5,20 @@ function MortgageCalculator(props) {
 
     return (
         <div>
-            <div>
-               {`$${income}`} 
+            <div id='mortgage-income' className='mortgage-field' >
+               {`Monthly income $${income}`} 
             </div>
-            <div>
-                {`$${expenses}`}
+            <div id='mortgage-expenses' className='mortgage-field' >
+                {`Monthly expenses $${expenses}`}
             </div>
-            <div>
-                {`${dti}%`}
+            <div id='mortgage-dti' className='mortgage-field' >
+                {`Debt-to-income ratio ${dti}%`}
             </div>
-            <div>
-                {`$${maxPayment}`}
+            <div id='mortgage-payment' className='mortgage-field' >
+                {`Maximum monthly payment $${maxPayment}`}
             </div>
-            <div>
-                {`$${maxMortgage}`}
+            <div id='mortgage-principle' className='mortgage-field' >
+                {`Maximum mortgage principle $${maxMortgage}`}
             </div>
         </div>
     );
