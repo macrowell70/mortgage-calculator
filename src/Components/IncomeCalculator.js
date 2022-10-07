@@ -86,8 +86,7 @@ export default function IncomeCalculator(props) {
                     
                 </form>
                 {paycheckIsEntered && (
-                    <div 
-                        className='calculated-income'>
+                    <div className='calculated-income'>
                         {`Your calculated monthly income: $${finalFigures.income}`}
                         <button onClick={() => handleNavigate('/expenses')}>Next Page</button> 
                     </div>

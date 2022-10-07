@@ -82,6 +82,7 @@ function App() {
             path='/expenses' 
             element={<ExpensesCalculator
             finalFigures={finalFigures}
+            handleNavigate={handleNavigate}
             handleChange={handleChange}
             updateFigures={updateFigures} />} 
           />

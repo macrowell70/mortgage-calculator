@@ -17,9 +17,10 @@ const initialFormValues = {
 };
 
 export default function ExpensesCalculator(props) {
-    const { updateFigures, finalFigures } = props
+    const { updateFigures, finalFigures, handleNavigate } = props
     const [formValues, setFormValues] = useState(initialFormValues);
     const [expenses, setExpenses] = useState();
+    const [expensesAreEntered, setExpensesAreEntered] = useState(false);
 
     const fields = [
         'mortgage',
@@ -47,6 +48,7 @@ export default function ExpensesCalculator(props) {
 
     const handleChange = evt => {
         setFormValues(props.handleChange(evt));
+        setExpensesAreEntered(false);
     };
 
     const handleChangeCC = evt => {
@@ -55,6 +57,7 @@ export default function ExpensesCalculator(props) {
             if (cc.name === name) return { name: name, value: value }
             else return cc
         })});
+        setExpensesAreEntered(false);
     };
 
     const handleChangeOther = evt => {
@@ -63,6 +66,7 @@ export default function ExpensesCalculator(props) {
             if(oth.name === name) return { name: name, value: value }
             else return oth
         })});
+        setExpensesAreEntered(false)
     };
 
 
@@ -82,11 +86,13 @@ export default function ExpensesCalculator(props) {
         evt.preventDefault()
         updateFigures('expenses', expenses)
         setFormValues(initialFormValues);
+        setExpensesAreEntered(true);
     };
 
     const handleReset = () => {
         setFormValues(initialFormValues);
         updateFigures('expenses', 0);
+        setExpensesAreEntered(false);
     };
     
     return (
@@ -140,9 +146,14 @@ export default function ExpensesCalculator(props) {
                     <div className='button-container'>
                         <button className='submit' type='submit'>Add Expenses</button>
                         <button className='reset' type='reset' onClick={handleReset}>Reset</button>    
-                    </div> 
-                        
+                    </div>    
                 </form>
+                {expensesAreEntered && (
+                    <div className='calculated-expenses' >
+                        {`Your calculated monthly expenses are $${finalFigures.expenses}`}
+                        <button onClick={() => handleNavigate('/mortgage')}>Next Page</button>
+                    </div>
+                )}
             </div>
         </div>
     )
