@@ -20,10 +20,7 @@ export default function ExpensesCalculator(props) {
     const [expenses, setExpenses] = useState();
     const [expensesAreEntered, setExpensesAreEntered] = useState(false);
 
-    const fields = [
-        'mortgage',
-        'auto'
-    ];
+    const fields = [ 'mortgage', 'auto' ];
 
     useEffect(() => {
         let totalExpenses = 0
