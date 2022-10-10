@@ -95,34 +95,39 @@ export default function ExpensesCalculator(props) {
                 <form id='expenses-form' className='form' onSubmit={handleSubmit}>
                     <div id='expenses-fields-container' className='static-fields-container'>
                         {fields.map((field) => (
-                            <input
-                                key={field}
-                                value={formValues[field]}
-                                type='number'
-                                placeholder={`monthly ${field} payment`}
-                                name={field}
-                                onChange={handleChange}
-                            >
-                            </input>
+                            <div key={field}>
+                                <label htmlFor={field}>Enter your monthly {`${field}`} payment</label><br></br>
+                                <input
+                                    id={field}
+                                    value={formValues[field]}
+                                    type='number'
+                                    placeholder={`$0.00`}
+                                    name={field}
+                                    onChange={handleChange}
+                                >
+                                </input>
+                            </div>
                         ))}    
                     </div>
+                    <label htmlFor='credit-cards-container'>Enter your minimum monthly credit card payments</label>
                     <div id='credit-cards-container' className='dynamic-fields-container'>
                         {formValues.creditCards.map((cc) => (
-                            <input
-                                key={cc.name}
-                                className='creditCards'
-                                value={cc.value}
-                                type='number'
-                                placeholder='minimum monthly payment'
-                                name={cc.name}
-                                onChange={handleChangeDyn}
-                            >
-                            </input>
+                                <input
+                                    key={cc.name}
+                                    className='creditCards'
+                                    value={cc.value}
+                                    type='number'
+                                    placeholder='$0.00'
+                                    name={cc.name}
+                                    onChange={handleChangeDyn}
+                                >
+                                </input>
                         ))}
                         <button type='button' className='add-button' onClick={() => addField('creditCards')}>+</button>
                         {formValues.creditCards.length > 1 && 
                             <button type='button' className='del-button' onClick={() => delField('creditCards')}>-</button>}    
                     </div>
+                    <label htmlFor='other-container' >Any other monthly payments you may have</label>
                     <div id='other-container' className='dynamic-fields-container'>
                         {formValues.other.map((oth) => (
                             <input
@@ -130,7 +135,7 @@ export default function ExpensesCalculator(props) {
                                 className='other'
                                 value={oth.value}
                                 type='number'
-                                placeholder='Monthly Payment'
+                                placeholder='$0.00'
                                 name={oth.name}
                                 onChange={handleChangeDyn}
                             >
