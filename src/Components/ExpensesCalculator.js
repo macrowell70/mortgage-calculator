@@ -4,8 +4,6 @@ import './ExpensesCalculator.css';
 const initialFormValues = {
     mortgage: '',
     auto: '',
-    taxes: '',
-    insurance: '',
     creditCards: [{
         name: 'creditCards1',
         value: ''
@@ -24,9 +22,7 @@ export default function ExpensesCalculator(props) {
 
     const fields = [
         'mortgage',
-        'auto',
-        'taxes',
-        'insurance'
+        'auto'
     ];
 
     useEffect(() => {
