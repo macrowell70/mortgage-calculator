@@ -91,7 +91,7 @@ export default function ExpensesCalculator(props) {
                 <form id='expenses-form' className='form' onSubmit={handleSubmit}>
                     <div id='expenses-fields-container' className='static-fields-container'>
                         {fields.map((field) => (
-                            <div key={field}>
+                            <div key={field} className='static-field'>
                                 <label htmlFor={field}>Enter your monthly {`${field}`} payment</label><br></br>
                                 <input
                                     id={field}
