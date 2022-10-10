@@ -144,7 +144,7 @@ export default function ExpensesCalculator(props) {
                     </div>    
                 </form>
                 {expensesAreEntered && (
-                    <div className='calculated-expenses' >
+                    <div className='calculated-field' >
                         {`Your calculated monthly expenses are $${finalFigures.expenses}`}
                         <button onClick={() => handleNavigate('/mortgage')}>Next Page</button>
                     </div>
