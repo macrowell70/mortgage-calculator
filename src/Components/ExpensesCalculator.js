@@ -51,20 +51,11 @@ export default function ExpensesCalculator(props) {
         setExpensesAreEntered(false);
     };
 
-    const handleChangeCC = evt => {
-        const { name, value } = evt.target;
-        setFormValues({...formValues, creditCards: formValues.creditCards.map(cc => {
-            if (cc.name === name) return { name: name, value: value }
-            else return cc
-        })});
-        setExpensesAreEntered(false);
-    };
-
-    const handleChangeOther = evt => {
-        const { name, value } = evt.target;
-        setFormValues({...formValues, other: formValues.other.map(oth => {
-            if(oth.name === name) return { name: name, value: value }
-            else return oth
+    const handleChangeDyn = evt => {
+        const { name, value, className } = evt.target;
+        setFormValues({...formValues, [className]: formValues[className].map(field => {
+            if (field.name === name) return { name: name, value: value }
+            else return field
         })});
         setExpensesAreEntered(false)
     };
@@ -103,9 +94,9 @@ export default function ExpensesCalculator(props) {
             <div className='form-container'>
                 <form id='expenses-form' className='form' onSubmit={handleSubmit}>
                     <div id='expenses-fields-container' className='static-fields-container'>
-                        {fields.map((field, i) => (
+                        {fields.map((field) => (
                             <input
-                                key={i}
+                                key={field}
                                 value={formValues[field]}
                                 type='number'
                                 placeholder={`monthly ${field} payment`}
@@ -116,14 +107,15 @@ export default function ExpensesCalculator(props) {
                         ))}    
                     </div>
                     <div id='credit-cards-container' className='dynamic-fields-container'>
-                        {formValues.creditCards.map((cc, i) => (
+                        {formValues.creditCards.map((cc) => (
                             <input
-                                key={i}
+                                key={cc.name}
+                                className='creditCards'
                                 value={cc.value}
                                 type='number'
                                 placeholder='minimum monthly payment'
                                 name={cc.name}
-                                onChange={handleChangeCC}
+                                onChange={handleChangeDyn}
                             >
                             </input>
                         ))}
@@ -132,14 +124,15 @@ export default function ExpensesCalculator(props) {
                             <button type='button' className='del-button' onClick={() => delField('creditCards')}>-</button>}    
                     </div>
                     <div id='other-container' className='dynamic-fields-container'>
-                        {formValues.other.map((oth, i) => (
+                        {formValues.other.map((oth) => (
                             <input
-                                key={i}
+                                key={oth.name}
+                                className='other'
                                 value={oth.value}
                                 type='number'
                                 placeholder='Monthly Payment'
                                 name={oth.name}
-                                onChange={handleChangeOther}
+                                onChange={handleChangeDyn}
                             >
                             </input>
                         ))}
