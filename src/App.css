@@ -23,6 +23,13 @@ button {
   padding: 0;
   border-radius: 50%;
 }
+.del-button{
+  height: 15px;
+  width: 15px;
+  padding: 0;
+  border-radius: 50%;
+  background-color:  #E44141;
+}
 .reset {
   background: #E44141;
 }
